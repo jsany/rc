@@ -1,0 +1,18 @@
+@import '../../style/base.less';
+@import './mixin.less';
+
+@countdown-prefix-cls: ~'@{prefix-cls}-countdown';
+@num: ~'@{countdown-prefix-cls}-num';
+@txt: ~'@{countdown-prefix-cls}-txt';
+
+.@{countdown-prefix-cls} {
+  .countdown();
+}
+
+.@{num} {
+  .num();
+}
+
+.@{txt} {
+  .txt();
+}
