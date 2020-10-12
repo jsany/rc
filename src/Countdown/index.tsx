@@ -32,21 +32,24 @@ const Countdown: FC<IProps> = props => {
             .toString(32)
             .slice(-6)
         : countdownId;
-    console.log('wkUUID: ', wkUUID);
+    // console.log('wkUUID: ', wkUUID);
     if (restProps.status === 'start') {
       // 使用 web worker 解决直接使用 setInterval 的触摸滑动时渲染卡顿问题
       intanceWorker.postMessage({
         id: wkUUID,
         second: restProps.initialSecond,
       });
-      intanceWorker.onmessage = ev => {
+      intanceWorker.addEventListener('message', ev => {
         const { id, second } = ev.data;
-        console.log('wkUUID, id, second: ', wkUUID, id, second);
+        // if(id === wkUUID){
+        //   console.log('wkUUID, id, second: ', wkUUID, id, second);
+        // }
         id === wkUUID && setRemainSecond(second);
-      };
+      });
     }
     return () => {
       intanceWorker.postMessage({ id: wkUUID, second: 0 });
+      intanceWorker.terminate();
     };
   }, []);
   const dhms = useMemo(() => transfDate(remainSecond), [remainSecond]);

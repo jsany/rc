@@ -27,19 +27,19 @@ export default () => {
       </h3>
       <Countdown id={0} initialSecond={10} status={status} />
       <h3>给定类名 test-cd</h3>
-      <Countdown id={1} initialSecond={10} className="test-cd" />
+      <Countdown id={1} initialSecond={8} className="test-cd" />
       <h3>镜像</h3>
-      <Countdown id={2} initialSecond={10} RTL={true} />
+      <Countdown id={2} initialSecond={6} RTL={true} />
       <h3>格式化 天/时/分/秒</h3>
       <Countdown
         id={3}
-        initialSecond={10}
+        initialSecond={5}
         formatter="{{DD}}-天-{{HH}}-时-{{mm}}-分-{{ss}}-秒"
       />
       <h3>自定义渲染倒计时的天/时/分/秒</h3>
       <Countdown
         id={4}
-        initialSecond={10}
+        initialSecond={4}
         renderCustom={({ DD, HH, mm, ss }) => `剩余 ${DD} 天 ${HH}:${mm}:${ss}`}
       />
     </div>
