@@ -1,5 +1,7 @@
 # @jsany/rc
 
+> personal pkg react components
+
 ## Getting Started
 
 Install dependencies,
