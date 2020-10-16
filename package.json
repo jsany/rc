@@ -17,7 +17,13 @@
   },
   "license": "MIT",
   "author": "jiangzhiguo2010",
-  "sideEffects": false,
+  "sideEffects": [
+    ".css",
+    ".less",
+    "es/**/style/*",
+    "lib/**/style/*",
+    "src/**/style/**"
+  ],
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
