@@ -1,17 +1,23 @@
 {
   "name": "@jsany/rc",
   "version": "1.0.0",
-  "scripts": {
-    "start": "dumi dev",
-    "docs:build": "dumi build",
-    "docs:deploy": "gh-pages -d docs-dist",
-    "build": "father-build",
-    "deploy": "npm run docs:build && npm run docs:deploy",
-    "release": "npm run build && npm publish",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+  "description": "personal react components hook",
+  "keywords": [
+    "react",
+    "components",
+    "hook"
+  ],
+  "homepage": "https://github.com/jsany/rc#readme",
+  "bugs": {
+    "url": "https://github.com/jsany/rc/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsany/rc.git"
+  },
+  "license": "MIT",
+  "author": "jiangzhiguo2010",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
@@ -19,18 +25,26 @@
     "es",
     "lib"
   ],
-  "sideEffects": false,
-  "license": "MIT",
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "prepare-commit-msg": "devmoji -e --lint"
+  "scripts": {
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "release": "npm run build && npm publish",
+    "start": "dumi dev",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
   },
   "lint-staged": {
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ],
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
     ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
+    "package.json": [
+      "sort-package-json"
     ]
   },
   "dependencies": {
@@ -56,10 +70,22 @@
     "jsdom-worker": "^0.2.1",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
+    "sort-package-json": "^1.46.0",
     "vfile-message": "^2.0.4",
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
     "node-fetch": "^2.6.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "prepare-commit-msg": "devmoji -e --lint"
+  },
+  "issues": {
+    "url": "https://github.com/jsany/rc/issues"
   }
 }
