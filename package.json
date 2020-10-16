@@ -31,7 +31,7 @@
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "release": "npm run build && npm publish",
+    "release": "standard-version",
     "start": "dumi dev",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage"
@@ -71,6 +71,7 @@
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "sort-package-json": "^1.46.0",
+    "standard-version": "^9.0.0",
     "vfile-message": "^2.0.4",
     "yorkie": "^2.0.0"
   },
