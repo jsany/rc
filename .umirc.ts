@@ -1,7 +1,8 @@
 import { defineConfig } from 'dumi';
-// import {resolve} from 'path'
+import { IConfig } from '@umijs/types';
 
-export default defineConfig({
+// import {resolve} from 'path'
+const config: IConfig = {
   // alias: {
   //   '@jsany/rc': resolve(__dirname, './src/index.ts')
   // },
@@ -13,4 +14,6 @@ export default defineConfig({
   outputPath: 'docs-dist',
   // more config: https://d.umijs.org/config
   publicPath: '/rc/',
-});
+  base: '/rc/',
+};
+export default defineConfig(config);
