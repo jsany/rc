@@ -25,6 +25,7 @@ const Countdown: FC<IProps> = props => {
   const [remainSecond, setRemainSecond] = useState<number>(
     restProps.initialSecond,
   );
+  const [status, setStatus] = useState<IProps['status']>(restProps.status);
   useEffect(() => {
     const wkUUID =
       countdownId === undefined
@@ -33,7 +34,7 @@ const Countdown: FC<IProps> = props => {
             .slice(-6)
         : countdownId;
     // console.log('wkUUID: ', wkUUID);
-    if (restProps.status === 'start') {
+    if (status === 'start') {
       // 使用 web worker 解决直接使用 setInterval 的触摸滑动时渲染卡顿问题
       intanceWorker.postMessage({
         id: wkUUID,
@@ -41,17 +42,21 @@ const Countdown: FC<IProps> = props => {
       });
       intanceWorker.addEventListener('message', ev => {
         const { id, second } = ev.data;
-        // if(id === wkUUID){
-        //   console.log('wkUUID, id, second: ', wkUUID, id, second);
-        // }
-        id === wkUUID && setRemainSecond(second);
+        if (id === wkUUID) {
+          console.log('wkUUID, id, second: ', wkUUID, id, second);
+          setRemainSecond(second);
+          second < 0 && setStatus('end');
+        }
       });
     }
     return () => {
-      intanceWorker.postMessage({ id: wkUUID, second: 0 });
+      intanceWorker.postMessage({ id: wkUUID, second: -1 });
       intanceWorker.terminate();
     };
   }, []);
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
   const dhms = useMemo(() => transfDate(remainSecond), [remainSecond]);
 
   const renderFormatter = (dhms: TDHMSProps) => {
@@ -77,9 +82,9 @@ const Countdown: FC<IProps> = props => {
     <div className={classesWrapper}>
       {restProps?.icon || <FontAwesomeIcon icon={faStopwatch} />}
       <span style={{ margin: '0 0.3rem' }} />
-      {restProps.status === 'start'
+      {status === 'start'
         ? restProps.renderCustom?.call(null, dhms) || renderFormatter(dhms)
-        : restProps.replaceTxt?.[restProps.status!]}
+        : restProps.replaceTxt?.[status!]}
     </div>
   );
 };

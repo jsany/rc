@@ -7,7 +7,7 @@ self.addEventListener('message', function(event) {
       var second = event.data.second;
       var T = setInterval(function() {
         // console.log('worker:',id, second)
-        self.postMessage({id: id, second: second--});
+        self.postMessage({id: id, second: --second});
         if (second < 0) {
           // console.log('clearInterval');
           clearInterval(T);
