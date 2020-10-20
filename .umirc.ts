@@ -1,8 +1,9 @@
-import { defineConfig } from 'dumi';
 import { IConfig } from '@umijs/types';
-
+// @ts-ignore
+import { IConfigFromPlugins } from '@@/core/pluginConfig';
 // import {resolve} from 'path'
-const config: IConfig = {
+
+const config: IConfig | IConfigFromPlugins = {
   // alias: {
   //   '@jsany/rc': resolve(__dirname, './src/index.ts')
   // },
@@ -17,4 +18,5 @@ const config: IConfig = {
   base: '/rc/',
   exportStatic: {}, // 将所有路由输出为 HTML 目录结构，以免刷新页面时 404
 };
-export default defineConfig(config);
+
+export default config;

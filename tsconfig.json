@@ -18,6 +18,7 @@
     },
     "allowSyntheticDefaultImports": true
   },
+  "include": ["src", ".umirc.ts"],
   "exclude": [
     "node_modules",
     "lib",
